@@ -19,6 +19,10 @@ const counter = {
 
 function handleButtonClick(event) {
   const action = event.target.getAttribute('data-action');
+  propertyIsset(action);
+}
+
+function propertyIsset(action) {
   if (counter.hasOwnProperty(action)) {
     counter[action]();
     counterValueRef.textContent = counter.counterValue;

@@ -13,7 +13,5 @@ function handleInputBlur(event) {
     : inputRef.classList.add('invalid');
 }
 function handleInputFocus() {
-  if (inputRef.classList.contains('valid')) inputRef.classList.remove('valid');
-  if (inputRef.classList.contains('invalid'))
-    inputRef.classList.remove('invalid');
+  inputRef.classList.remove('invalid', 'valid');
 }

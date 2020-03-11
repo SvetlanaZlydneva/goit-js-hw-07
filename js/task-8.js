@@ -13,6 +13,7 @@ const inputRef = document.querySelector('#controls input');
 const boxesRef = document.querySelector('#boxes');
 
 controlsRef.addEventListener('click', handleButtonClick);
+console.dir(inputRef);
 
 function handleButtonClick(event) {
   const action = event.target.getAttribute('data-action');
@@ -24,20 +25,24 @@ function handleButtonClick(event) {
 const boxes = {
   size: 20,
   step: 10,
+  elementsArray: [],
+
   createBoxes(amount) {
-    const elementsArray = [];
     for (let i = 1; i <= amount; i++) {
-      elementsArray.push(this.newElem(i * this.step + this.size).outerHTML);
+      this.elementsArray.push(this.newElem((this.size += this.step)).outerHTML);
     }
-    boxesRef.innerHTML = elementsArray.join('');
+    boxesRef.innerHTML = this.elementsArray.join('');
   },
+
   destroyBoxes() {
     boxesRef.innerHTML = '';
     inputRef.value = '';
   },
+
   randomColor() {
     return Math.floor(Math.random() * 256);
   },
+
   newElem(size) {
     const newElement = document.createElement('div');
     newElement.style.width = size + 'px';
